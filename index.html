@@ -1,0 +1,294 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project</title>
+    <link rel="stylesheet" href="./CSS/display.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./CSS/style.css" />
+  </head>
+  <body style="margin: 0">
+    <div id="main-container">
+      <header id="header">
+        <div id="logo" onclick="showMainPage()">
+          <i class="fas fa-laptop-house link"></i>
+          <span id="store-name" class="link">A Laptop Store</span>
+        </div>
+        <div id="search">
+          <input id="search-input" type="text" placeholder="Search" size="50" />
+          <i class="fas fa-search"></i>
+        </div>
+        <div id="login-register" class="link">
+          <div onclick="showLoginPage()">
+            <span>Login</span><span>/</span><span>Register</span>
+          </div>
+        </div>
+        <div>
+          <i
+            id="cart-icon"
+            class="fas fa-shopping-cart link"
+            onclick="showCart()"
+          ></i>
+        </div>
+      </header>
+      <section id="main-page">
+        <div id="content-container">
+          <div id="left-banner">
+            <div id="left-banner-inner">
+              <div class="product-brand link" name="Asus">Asus</div>
+              <div class="product-brand link" name="Acer">Acer</div>
+              <div class="product-brand link" name="Dell">Dell</div>
+              <div class="product-brand link" name="HP">HP</div>
+              <div class="product-brand link" name="Lenovo">Lenovo</div>
+            </div>
+          </div>
+          <div id="products">
+            <div id="featured-banner">featured-banner</div>
+            <div id="product-list">
+              <div id="product-list-top">
+                Sort by price: <button onclick="sortUp()">Ascending</button>
+                <button onclick="sortDown()">Descending</button>
+              </div>
+              <div id="product-list-main">
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+                <div class="product-container">product</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="login-page" style="display: none">
+          <div>
+            Login
+            <div><input id="login-id" type="text" placeholder="ID" /></div>
+            <div>
+              <input id="login-pw" type="password" placeholder="Password" />
+            </div>
+            <button id="login-btn">Login</button>
+          </div>
+          <div>
+            Register
+            <div><input id="reg-id" type="text" placeholder="New ID" /></div>
+            <div>
+              <input id="reg-pw" type="password" placeholder="New Password" />
+            </div>
+            <button id="reg-btn">Register</button>
+          </div>
+        </div>
+        <div id="cart-page" style="display: none">
+          <div>Cart</div>
+          <div>
+            <ul id="cart"></ul>
+          </div>
+          <div id="cart-total">Total:</div>
+          <div>
+            <button id="checkout-btn" onclick="checkout()">Checkout</button>
+          </div>
+          <div id="checkout-modal" class="modal" style="display: none">
+            <div id="modal-content">
+              <div id="modal-content-inner"></div>
+              <div id="modal-button-div">
+                <button class="modal-button" onclick="pay()">PAY!</button>
+                <button class="modal-button" onclick="closeModal()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="user-profile" style="display: none">
+          <div id="user-profile-inner">
+            <div style="margin-bottom: 15px">Info</div>
+            <div>
+              <span class="user-profile-div">Name: </span
+              ><span class="user-info-div">(not set)</span>
+            </div>
+            <div>
+              <span class="user-profile-div">DoB: </span>
+              <span class="user-info-div">(not set)</span>
+            </div>
+            <div>
+              <span class="user-profile-div">Address: </span
+              ><span class="user-info-div">(not set)</span>
+            </div>
+            <div id="change-btn-div">
+              <button class="user-profile-btn" onclick="changeUserInfo()">
+                Change
+              </button>
+            </div>
+          </div>
+          <div id="password-change-inner">
+            <div style="margin-bottom: 15px">Change password</div>
+            <span class="password-change-div">Current password: </span>
+            <input
+              id="current-password-input"
+              class="password-input"
+              type="password"
+            />
+            <span class="password-change-div">New password: </span>
+            <input
+              id="new-password-input"
+              class="password-input"
+              type="password"
+            />
+            <button
+              id="save-password-btn"
+              class="user-profile-btn"
+              onclick="changePassword()"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+        <div id="admin-tools" style="display: none">
+          <div>
+            <button class="admin-btn" onclick="showManager()">
+              Inventory Manager
+            </button>
+          </div>
+          <div>
+            <button class="admin-btn" onclick="showUserViewer()">
+              User Manager
+            </button>
+          </div>
+        </div>
+        <div id="inventory-mngmt" style="display: none">
+          <div id="image-preview-container">Image preview</div>          
+          <div id="edit-product">
+            <div>
+              <input
+                id="input-name-product"
+                class="input"
+                type="text"
+                placeholder="Enter name"
+              />
+              <input
+                id="input-model-product"
+                class="input"
+                type="text"
+                placeholder="Enter model"
+              />
+              <input
+                id="input-price-product"
+                class="input"
+                type="text"
+                placeholder="Enter price"
+              />
+              <input
+                id="input-brand-product"
+                class="input"
+                type="text"
+                placeholder="Enter brand"
+              />
+              <input
+                id="input-cpu-product"
+                class="input"
+                type="text"
+                placeholder="Enter cpu"
+              />
+              <input
+                id="input-ram-product"
+                class="input"
+                type="text"
+                placeholder="Enter ram"
+              />
+              <input
+                id="input-storage-product"
+                class="input"
+                type="text"
+                placeholder="Enter storage"
+              />
+              <input
+                id="input-vga-product"
+                class="input"
+                type="text"
+                placeholder="Enter vga"
+              />
+              <input
+                id="input-screen-product"
+                class="input"
+                type="text"
+                placeholder="Enter screen"
+              />
+              <input
+                id="input-os-product"
+                class="input"
+                type="text"
+                placeholder="Enter os"
+              />
+              <input
+                id="input-color-product"
+                class="input"
+                type="text"
+                placeholder="Enter color"
+              />
+              <select name="image-select" id="image-select" onchange="previewImage()"></select>              
+            </div>
+            <div>
+              Description:
+              <span
+                id="input-description-product"
+                class="textarea"
+                role="textbox"
+                contenteditable
+              >
+              </span>
+              <button class="add-product" onclick="addProduct()">Add</button>
+            </div>
+          </div>
+          <table border="1px black">
+            <thead>
+              <tr>
+                <th rowspan="2">No</th>
+                <th rowspan="2">Name</th>
+                <th rowspan="2">Model</th>
+                <th rowspan="2">Price</th>
+                <th rowspan="2">Brand</th>
+                <th colspan="7">Spec</th>
+                <th rowspan="2">Description</th>
+                <th rowspan="2">Image</th>
+                <th rowspan="2">Action</th>
+              </tr>
+              <tr>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>Storage</th>
+                <th>VGA</th>
+                <th>Screen</th>
+                <th>OS</th>
+                <th>Color</th>
+              </tr>
+            </thead>
+            <tbody id="display-table"></tbody>
+          </table>
+        </div>
+        <div id="user-mnmgt" style="display: none"></div>
+        <div id="product-detail-page" style="display: none"></div>
+        <div id="image-hover-container"></div>
+      </section>
+      <footer id="footer">
+        <div id="footer-inner">
+          A group project by:
+          <ul>
+            <li>ĐQD</li>
+            <li>NVQ</li>
+          </ul>
+        </div>
+      </footer>
+    </div>
+    <script src="./JS/data.js"></script>
+    <script src="./JS/domElement.js"></script>
+    <script src="./JS/render.js"></script>
+    <script src="./JS/index.js"></script>
+  </body>
+</html>
